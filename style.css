@@ -1,82 +1,79 @@
 body {
   margin: 0;
-  padding: 0;
-  background-color: #0d0d0d;
-  font-family: 'Courier New', monospace;
-  color: #00ffff;
+  background: #000;
+  color: #0ff;
+  font-family: 'Orbitron', sans-serif;
   overflow: hidden;
 }
 
-.overlay {
-  width: 100vw;
+.ui-container {
+  display: flex;
   height: 100vh;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wheel-container {
+  flex: 0 0 200px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wheel {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #0ff;
+  border-radius: 50%;
   padding: 30px;
-  box-sizing: border-box;
+  transition: transform 1s ease, scale 0.5s ease;
 }
 
-.hud {
-  border: 2px solid #00ffff;
-  padding: 20px;
-  border-radius: 12px;
-  background: rgba(0, 255, 255, 0.05);
-  box-shadow: 0 0 20px #00ffff44;
-  height: 90%;
-  overflow: auto;
+.wheel.spin {
+  transform: rotate(360deg);
+  scale: 1.4;
 }
 
-.glow {
-  text-shadow: 0 0 8px #00ffff;
-}
-
-.scan-section {
-  margin-bottom: 30px;
-}
-
-.status {
-  color: #39ff14;
-  font-weight: bold;
-}
-
-button {
-  background: transparent;
-  border: 1px solid #00ffff;
-  padding: 8px 16px;
-  color: #00ffff;
+.option {
+  padding: 10px;
+  margin: 5px 0;
+  background: #011;
+  text-align: center;
   cursor: pointer;
-  font-family: inherit;
-  margin-top: 10px;
+  border: 1px solid #0ff;
   transition: background 0.3s;
 }
 
-button:hover {
-  background-color: #00ffff33;
+.option.active {
+  background: #0ff;
+  color: #000;
 }
 
-.console {
-  margin-top: 30px;
+.panel {
+  flex: 1;
+  padding: 40px;
 }
 
-.console-title {
-  font-weight: bold;
-  margin-bottom: 5px;
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #0ff;
+  padding-bottom: 10px;
 }
 
-#log {
-  background-color: #001111;
-  padding: 10px;
-  height: 150px;
-  overflow-y: auto;
-  border: 1px solid #00ffff55;
-  font-size: 14px;
-  margin-bottom: 10px;
+.commands button {
+  margin: 10px;
+  padding: 12px 24px;
+  background: #022;
+  border: 1px solid #0ff;
+  color: #0ff;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-#commandInput {
-  width: 100%;
-  padding: 10px;
-  background-color: #000000;
-  border: 1px solid #00ffff55;
-  color: #00ffff;
-  font-family: inherit;
+.commands button:hover {
+  background: #0ff;
+  color: #000;
 }
 
