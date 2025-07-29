@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JARVIS HUD</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="overlay">
+    <div class="hud">
+      <h1 class="glow">J.A.R.V.I.S. SYSTEM INTERFACE</h1>
+      <div class="scan-section">
+        <p>Status: <span class="status">ONLINE</span></p>
+        <p>Last Scan: <span id="scanTime">Never</span></p>
+        <button onclick="runScan()">Run Diagnostic</button>
+      </div>
+
+      <div class="console">
+        <p class="console-title">CONSOLE</p>
+        <div id="log"></div>
+        <input type="text" id="commandInput" placeholder="> enter command..." onkeydown="runCommand(event)">
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
