@@ -85,13 +85,71 @@
         A mobile app for fitness tracking, including workout logs and progress visualization.
       </div>
     </div>
+
+        <div class="project-card">
+      <img class="project-image" src="project3.jpg" alt="Project 3 Image" />
+      <div class="project-description">
+        A mobile app for fitness tracking, including workout logs and progress visualization.
+      </div>
+    </div>
+
+        <div class="project-card">
+      <img class="project-image" src="project3.jpg" alt="Project 3 Image" />
+      <div class="project-description">
+        A mobile app for fitness tracking, including workout logs and progress visualization.
+      </div>
+    </div>
+
+        <div class="project-card">
+      <img class="project-image" src="project3.jpg" alt="Project 3 Image" />
+      <div class="project-description">
+        A mobile app for fitness tracking, including workout logs and progress visualization.
+      </div>
+    </div>
+
     
     <!-- Add more project cards here -->
+
     
-    <button class="btn" onclick="goBack()">Go Back</button>
-    <nav>
-      <a>"https://dorukersoy09.github.io"</a>
-    <nav>
+<style>
+  .btn,
+  #goBack button {
+    background: #00ffe7;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #121212;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00ffe7;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+  }
+  .btn:hover,
+  #goBack button:hover {
+    background: #00ccb2;
+    box-shadow: 0 0 20px #00ccb2;
+  }
+</style>
+
+<button class="btn" onclick="goBack()">Go Back</button>
+
+<nav>
+  <a href="https://dorukersoy09.github.io" target="_blank" rel="noopener noreferrer">
+    Go to Doruk's GitHub Pages
+  </a>
+</nav>
+
+<script>
+  function goBack() {
+    if (document.referrer) {
+      window.history.back();
+    } else {
+      window.location.href = "https://dorukersoy09.github.io";
+    }
+  }
+</script>
 
 
   </div>
