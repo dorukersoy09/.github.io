@@ -42,30 +42,7 @@ wheel.addEventListener("click", spinWheel);
 // Init
 updateSection(index);
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Link Checker Example</title>
-  <style>
-    nav a {
-      margin-right: 10px;
-      text-decoration: none;
-      color: #0077cc;
-    }
-    nav a:hover {
-      color: #005599;
-    }
-  </style>
-</head>
-<body>
 
-  <nav>
-    <a href="">Home</a> /
-    <a href=" ">P1</a> /
-    <a href="#">P2</a> /
-    <a href="projects.html">Projects</a>
-  </nav>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -77,14 +54,13 @@ updateSection(index);
 
           if (href === "" || href === "#" || href === " ") {
             e.preventDefault(); // prevent default navigation
-            window.location.href = "page.html"; // redirect
+           window.location.href = "https://dorukersoy09.github.io/page.html";
           }
         });
       });
     });
   </script>
 
-</body>
 </html>
 
 
