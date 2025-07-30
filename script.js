@@ -34,6 +34,11 @@ function spinWheel() {
     updateSection(index);
   }, 1000);
 }
+    function checkSelection() {
+      const selected = document.getElementById("options").value;
+      if (selected === "") {
+        window.location.href = "page.html"; // 🔁 Redirect to another page
+      }
 
 // Spin on click
 wheel.addEventListener("click", spinWheel);
