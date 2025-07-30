@@ -34,14 +34,40 @@ function spinWheel() {
     updateSection(index);
   }, 1000);
 }
-    function checkSelection() {
-      const selected = document.getElementById("options").value;
-      if (selected === "") {
-        window.location.href = "page.html"; // 🔁 Redirect to another page
-      }
+
 
 // Spin on click
 wheel.addEventListener("click", spinWheel);
 
 // Init
 updateSection(index);
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Auto Redirect on Select</title>
+</head>
+<body>
+
+  <h2>Select a Page:</h2>
+  <select id="options" onchange="checkSelection()">
+    <option value="">-- Select an Option --</option>
+    <option value="page1">Page 1</option>
+    <option value="page2">Page 2</option>
+  </select>
+
+  <script>
+    function checkSelection() {
+      const selected = document.getElementById("options").value;
+      if (selected === "") {
+        window.location.href = "page.html"; // Redirect to empty.html if no option chosen
+      } else {
+        window.location.href = selected + ".html"; // Redirect to selected page (like page1.html)
+      }
+    }
+  </script>
+
+</body>
+</html>
+
