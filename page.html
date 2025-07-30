@@ -4,10 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Information Page</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("YOUR_PUBLIC_KEY"); // 🔁 Replace with your EmailJS public key
+    })();
+  </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-    /* Reset & base */
     * {
       box-sizing: border-box;
     }
@@ -48,7 +53,8 @@
       color: #b0b0b0;
     }
 
-    .btn {
+    .btn,
+    #notifyForm button {
       background: #00ffe7;
       border: none;
       border-radius: 6px;
@@ -62,18 +68,36 @@
       text-transform: uppercase;
     }
 
-    .btn:hover {
+    .btn:hover,
+    #notifyForm button:hover {
       background: #00ccb2;
       box-shadow: 0 0 20px #00ccb2;
     }
 
-    /* Simple fade-in animation */
+    #notifyForm {
+      margin-top: 20px;
+    }
+
+    input[type="email"] {
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      width: 80%;
+      max-width: 300px;
+      margin-bottom: 10px;
+    }
+
+    #status {
+      margin-top: 10px;
+      color: #00ffe7;
+      font-weight: bold;
+    }
+
     @keyframes fadeIn {
       from {opacity: 0; transform: translateY(20px);}
       to {opacity: 1; transform: translateY(0);}
     }
 
-    /* Responsive */
     @media (max-width: 480px) {
       .container {
         padding: 25px 20px;
@@ -81,7 +105,7 @@
       h1 {
         font-size: 1.8rem;
       }
-      .btn {
+      .btn, #notifyForm button {
         width: 100%;
       }
     }
@@ -89,22 +113,48 @@
 </head>
 <body>
   <div class="container" role="main">
-    <h1>Welcome to the Info Page</h1>
+    <h1>This Page Is Empty</h1>
     <p>
-      Thank you for interacting with our system! Here you can find relevant information, guides, or further instructions based on your selection.
+      Thank you for interacting with our system! You can go back or leave your email to be notified when new content is available.
     </p>
     <button class="btn" onclick="goBack()">Go Back</button>
+
+    <form id="notifyForm">
+      <input type="email" id="userEmail" name="user_email" placeholder="Enter your email..." required />
+      <br>
+      <button type="submit">Notify Me</button>
+      <div id="status"></div>
+    </form>
   </div>
 
   <script>
     function goBack() {
-      // Go back to previous page or homepage
       if (document.referrer) {
         window.history.back();
       } else {
-        window.location.href = '/'; // Change to your homepage URL
+        window.location.href = '/';
       }
     }
+
+    document.getElementById("notifyForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("userEmail").value;
+      const status = document.getElementById("status");
+
+      const templateParams = {
+        user_email: email
+      };
+
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
+        .then(() => {
+          status.textContent = "You're on the list!";
+          document.getElementById("notifyForm").reset();
+        }, (error) => {
+          status.textContent = "Failed to subscribe. Try again.";
+          console.error(error);
+        });
+    });
   </script>
 </body>
 </html>
