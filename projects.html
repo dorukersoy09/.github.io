@@ -112,8 +112,10 @@
 
     
 <style>
-  .btn,
-  #goBack button {
+  .btn {
+    display: block;
+    margin: 20px auto;
+    /* existing styles */
     background: #00ffe7;
     border: none;
     border-radius: 6px;
@@ -135,19 +137,12 @@
 
 <button class="btn" onclick="goBack()">Go Back</button>
 
-<nav>
-  <a href="https://dorukersoy09.github.io" target="_blank" rel="noopener noreferrer">
-    Go to Doruk's GitHub Pages
-  </a>
-</nav>
 
 <script>
   function goBack() {
     if (document.referrer) {
       window.history.back();
-    } else {
-      window.location.href = "https://dorukersoy09.github.io";
-    }
+    } 
   }
 </script>
 
