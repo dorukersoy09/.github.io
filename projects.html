@@ -111,40 +111,50 @@
     <!-- Add more project cards here -->
 
     
-<style>
-  .btn {
-    display: block;
-    margin: 20px auto;
-    /* existing styles */
-    background: #00ffe7;
-    border: none;
-    border-radius: 6px;
-    padding: 12px 30px;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #121212;
-    cursor: pointer;
-    box-shadow: 0 0 10px #00ffe7;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-    text-transform: uppercase;
-  }
-  .btn:hover,
-  #goBack button:hover {
-    background: #00ccb2;
-    box-shadow: 0 0 20px #00ccb2;
-  }
-</style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Centered Go Back Button</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center; /* center horizontally */
+      padding: 40px;
+      background: #121212;
+    }
 
-<button class="btn" onclick="goBack()">Go Back</button>
+    .btn {
+      background: #00ffe7;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 30px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #121212;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00ffe7;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      text-transform: uppercase;
+    }
 
+    .btn:hover {
+      background: #00ccb2;
+      box-shadow: 0 0 20px #00ccb2;
+    }
+  </style>
+</head>
+<body>
 
-<script>
-  function goBack() {
-    if (document.referrer) {
-      window.history.back();
-    } 
-  }
-</script>
+  <button class="btn" onclick="goBack()">Go Back</button>
+
+  <script>
+    function goBack() {
+      if (document.referrer) {
+        window.history.back();
+      }
+    }
+  </script>
 
 
   </div>
