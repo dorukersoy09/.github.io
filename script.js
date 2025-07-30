@@ -45,29 +45,46 @@ updateSection(index);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Auto Redirect on Select</title>
+  <meta charset="UTF-8">
+  <title>Link Checker Example</title>
+  <style>
+    nav a {
+      margin-right: 10px;
+      text-decoration: none;
+      color: #0077cc;
+    }
+    nav a:hover {
+      color: #005599;
+    }
+  </style>
 </head>
 <body>
 
-  <h2>Select a Page:</h2>
-  <select id="options" onchange="checkSelection()">
-    <option value="">-- Select an Option --</option>
-    <option value="page1">Page 1</option>
-    <option value="page2">Page 2</option>
-  </select>
+  <nav>
+    <a href="">Home</a> /
+    <a href=" ">P1</a> /
+    <a href="#">P2</a> /
+    <a href="projects.html">Projects</a>
+  </nav>
 
   <script>
-    function checkSelection() {
-      const selected = document.getElementById("options").value;
-      if (selected === "") {
-        window.location.href = "page.html"; // Redirect to empty.html if no option chosen
-      } else {
-        window.location.href = selected + ".html"; // Redirect to selected page (like page1.html)
-      }
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+      const links = document.querySelectorAll("a");
+
+      links.forEach(link => {
+        link.addEventListener("click", function (e) {
+          const href = link.getAttribute("href").trim();
+
+          if (href === "" || href === "#" || href === " ") {
+            e.preventDefault(); // prevent default navigation
+            window.location.href = "page.html"; // redirect
+          }
+        });
+      });
+    });
   </script>
 
 </body>
 </html>
+
 
