@@ -2,114 +2,95 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Iron UI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Half Circle Sidebar</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background-color: #0a0a0a;
-      color: #00f7ff;
-      display: flex;
       height: 100vh;
+      background: #0a0a0a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .sidebar-container {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 300px;
+      height: 300px;
+      border-radius: 0 100% 100% 0;
+      background: rgba(0, 255, 231, 0.1);
+      border-right: 3px solid #00ffe7;
+      clip-path: circle(50% at 100% 50%);
       overflow: hidden;
     }
 
-    /* Sidebar */
-    .sidebar {
-      width: 250px;
-      background: rgba(0, 255, 255, 0.05);
-      border-right: 1px solid #00f7ff55;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      box-shadow: inset -2px 0 10px rgba(0, 255, 255, 0.2);
+    .rotating-menu {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform-origin: center center;
+      transition: transform 0.8s ease-in-out;
     }
 
-    .sidebar h2 {
-      color: #00f7ff;
-      text-align: center;
-      margin-bottom: 30px;
+    .menu-button {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-origin: -120px center;
+      background: #00ffe7;
+      border: none;
+      color: #121212;
+      font-weight: bold;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 0 8px #00ffe7;
+      transition: background 0.3s, box-shadow 0.3s;
     }
 
-    .nav-link {
-      color: #00f7ff;
-      padding: 10px 15px;
-      margin: 10px 0;
-      border: 1px solid #00f7ff33;
-      border-radius: 5px;
-      text-align: center;
-      text-decoration: none;
-      transition: 0.3s;
+    .menu-button:hover {
+      background: #00ccb2;
+      box-shadow: 0 0 15px #00ccb2;
     }
 
-    .nav-link:hover {
-      background: rgba(0, 255, 255, 0.2);
-      box-shadow: 0 0 10px #00f7ff88;
-    }
-
-    /* Main HUD Panel */
-    .main-screen {
-      flex: 1;
-      padding: 40px;
-      position: relative;
-      background: radial-gradient(ellipse at center, #000000 0%, #0a0a0a 100%);
-    }
-
-    .hud-block {
-      background: rgba(0, 255, 255, 0.05);
-      border: 1px solid #00f7ff33;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 10px #00f7ff33;
-      backdrop-filter: blur(4px);
-    }
-
-    .hud-title {
-      font-size: 1.2rem;
-      border-bottom: 1px solid #00f7ff33;
-      margin-bottom: 10px;
-      padding-bottom: 5px;
-    }
-
-    .glow {
-      text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff;
-    }
-
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+    /* Position buttons radially */
+    .btn1 { transform: rotate(0deg) translateX(-120px) rotate(0deg); }
+    .btn2 { transform: rotate(45deg) translateX(-120px) rotate(-45deg); }
+    .btn3 { transform: rotate(90deg) translateX(-120px) rotate(-90deg); }
+    .btn4 { transform: rotate(135deg) translateX(-120px) rotate(-135deg); }
   </style>
 </head>
 <body>
 
-  <div class="sidebar">
-    <h2 class="glow">SYSTEM</h2>
-    <a href="#" class="nav-link">Diagnostics</a>
-    <a href="#" class="nav-link">Targeting</a>
-    <a href="#" class="nav-link">Power Core</a>
-    <a href="#" class="nav-link">Comm</a>
-    <a href="#" class="nav-link">HUD Config</a>
+<div class="sidebar-container">
+  <div class="rotating-menu" id="menu">
+    <button class="menu-button btn1" onclick="rotateTo(0, 'page1.html')">Home</button>
+    <button class="menu-button btn2" onclick="rotateTo(45, 'projects.html')">Projects</button>
+    <button class="menu-button btn3" onclick="rotateTo(90, 'about.html')">About</button>
+    <button class="menu-button btn4" onclick="rotateTo(135, 'contact.html')">Contact</button>
   </div>
+</div>
 
-  <div class="main-screen">
-    <div class="hud-block">
-      <div class="hud-title glow">SYSTEM STATUS</div>
-      <p>Power: 98%</p>
-      <p>Core Temp: 32°C</p>
-      <p>Shields: Online</p>
-    </div>
+<script>
+  let currentAngle = 0;
 
-    <div class="hud-block">
-      <div class="hud-title glow">TARGET LOCK</div>
-      <p>No hostile targets detected.</p>
-    </div>
-
-    <div class="hud-block">
-      <div class="hud-title glow">ENVIRONMENTAL READINGS</div>
-      <p>Outside Temp: 27°C</p>
-      <p>Radiation Levels: Safe</p>
-    </div>
-  </div>
+  function rotateTo(angle, url) {
+    const rotation = -angle;
+    currentAngle = rotation;
+    document.getElementById("menu").style.transform = `rotate(${rotation}deg)`;
+    
+    // Delay page navigation so user sees the spin
+    setTimeout(() => {
+      window.location.href = url;
+    }, 800); // match CSS transition
+  }
+</script>
 
 </body>
 </html>
