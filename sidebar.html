@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hover Sidebar</title>
+  <title>IronUI with Hover Sidebar</title>
   <style>
     body {
       margin: 0;
@@ -79,10 +79,10 @@
 <!-- Sidebar -->
 <div class="sidebar-wrapper" id="sidebar">
   <div class="menu" id="menu">
-    <button data-link="index.html">Home</button>
+    <button data-link="ironui.html">Home</button>
     <button data-link="projects.html">Projects</button>
-    <button data-link="page.html">About</button>
-    <button data-link="page.html">Contact</button>
+    <button data-link="about.html">About</button>
+    <button data-link="contact.html">Contact</button>
   </div>
 </div>
 
@@ -104,7 +104,10 @@
   // Button click rotation logic + navigation
   buttons.forEach((btn, index) => {
     btn.addEventListener('click', () => {
-      window.location.href = btn.dataset.link;
+      const target = btn.dataset.link;
+      if (target) {
+        window.location.href = target;
+      }
 
       const clicked = buttons.splice(index, 1)[0];
       buttons.unshift(clicked);
