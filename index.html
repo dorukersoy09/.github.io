@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Doruk Ersoy - Homepage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Doruk Ersoy - IronUI</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -11,87 +11,32 @@
       font-family: 'Orbitron', sans-serif;
       background: radial-gradient(ellipse at top left, #0f172a, #020617);
       color: #f8fafc;
+      margin: 0;
+      overflow-x: hidden;
+      display: flex;
     }
+
     .glass {
       backdrop-filter: blur(8px);
       background-color: rgba(15, 23, 42, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
-  </style>
-</head>
-<body class="min-h-screen px-4 py-6">
-  <div class="max-w-3xl mx-auto p-6 rounded-2xl glass shadow-lg">
-    <header class="text-center mb-6">
-      <h1 class="text-4xl font-bold text-cyan-400">Doruk Ersoy</h1>
-            <nav>
-                <a href="https://dorukersoy09.github.io/page.html">Home</a> /
-                <a href="https://dorukersoy09.github.io/page.html">P1</a> /
-                <a href="https://dorukersoy09.github.io/page.html">P2</a> /
-                  <a href="https://dorukersoy09.github.io/projects.html">Projects</a>
-            </nav>
-      <p class="text-sm text-gray-300">Creative Developer • Tech Enthusiast • Student</p>
-    </header>
 
-    <section class="mb-6">
-      <h2 class="text-2xl text-cyan-300 mb-2 border-b border-cyan-800">About Me</h2>
-      <p class="text-gray-200">
-        Hello! I'm Doruk Ersoy, a passionate creator focused on building interactive and futuristic UIs.
-        I love working with web technologies and pushing the boundaries of design.
-      </p>
-    </section>
-
-    <section class="mb-6">
-      <h2 class="text-2xl text-cyan-300 mb-2 border-b border-cyan-800">Skills</h2>
-      <ul class="grid grid-cols-2 gap-2 text-sm text-gray-200">
-        <li>HTML & CSS</li>
-        <li>Swift / Xcode</li>
-        <li>Python</li>
-        <li>Git & GitHub</li>
-      </ul>
-    </section>
-
-    <section class="mb-6">
-      <h2 class="text-2xl text-cyan-300 mb-2 border-b border-cyan-800"></nav><a href="https://dorukersoy09.github.io/projects.html">Projects</a></nav></h2>
-      <p class="text-gray-200">Coming soon...</p>
-    </section>
-
-    <section>
-      <h2 class="text-2xl text-cyan-300 mb-2 border-b border-cyan-800">Contact</h2>
-      <div class="flex flex-col gap-2 text-gray-200">
-        <a href="mailto:you@example.com" class="hover:underline text-cyan-400">dorukersoy@gmail.com</a>
-        <a href="https://github.com/yourusername" target="_blank" class="hover:underline text-cyan-400">dorukersoy09.github.io</a>
-        <a href="https://linkedin.com/in/yourusername" target="_blank" class="hover:underline text-cyan-400">LinkedIn</a>
-      </div>
-    </section>
-  </div>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rotating Neon Sidebar</title>
-  <style>
-    body {
-      margin: 0;
-      background: #0a0a0a;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
+    .sidebar {
+      width: 150px;
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .menu {
-      position: absolute;
-      left: 50px;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 300px;
-      width: 150px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      position: relative;
       gap: 20px;
+      width: 150px;
     }
 
     .menu button {
@@ -123,13 +68,57 @@
 </head>
 <body>
 
-<div class="menu" id="menu">
-  <button data-link="index.html">Home</button>
-  <button data-link="projects.html">Projects</button>
-  <button data-link="page.html">About</button>
-  <button data-link="page.html">Contact</button>
+<!-- Sidebar -->
+<div class="sidebar">
+  <div class="menu" id="menu">
+    <button data-link="ironui.html">Home</button>
+    <button data-link="projects.html">Projects</button>
+    <button data-link="page.html">About</button>
+    <button data-link="page.html">Contact</button>
+  </div>
 </div>
 
+<!-- Main content -->
+<div class="flex-1 px-4 py-6">
+  <div class="max-w-3xl mx-auto p-6 rounded-2xl glass shadow-lg">
+    <header class="text-center mb-6">
+      <h1 class="text-4xl font-bold text-cyan-400">Doruk Ersoy</h1>
+      <p class="text-sm text-gray-300">Creative Developer • Tech Enthusiast • Student</p>
+    </header>
+
+    <section class="mb-6">
+      <h2 class="text-2xl text-cyan-300 mb-2 border-b border-cyan-800">About Me</h2>
+      <p class="text-gray-200">
+        Hello! I'm Doruk Ersoy, a passionate creator focused on building interactive and futuristic UIs.
+        I love working with web technologies and pushing the boundaries of design.
+      </p>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-2xl text-cyan-300 mb-2 border-b border-cyan-800">Skills</h2>
+      <ul class="grid grid-cols-2 gap-2 text-sm text-gray-200">
+        <li>HTML & CSS</li>
+        <li>Swift / Xcode</li>
+        <li>Python</li>
+        <li>Git & GitHub</li>
+      </ul>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-2xl text-cyan-300 mb-2 border-b border-cyan-800">Projects</h2>
+      <p class="text-gray-200">Coming soon...</p>
+    </section>
+
+    <section>
+      <h2 class="text-2xl text-cyan-300 mb-2 border-b border-cyan-800">Contact</h2>
+      <div class="flex flex-col gap-2 text-gray-200">
+        <a href="mailto:dorukersoy@gmail.com" class="hover:underline text-cyan-400">dorukersoy@gmail.com</a>
+        <a href="https://github.com/dorukersoy09" target="_blank" class="hover:underline text-cyan-400">GitHub</a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank" class="hover:underline text-cyan-400">LinkedIn</a>
+      </div>
+    </section>
+  </div>
+</div>
 
 <script>
   const menu = document.getElementById('menu');
@@ -137,14 +126,16 @@
 
   buttons.forEach((btn, index) => {
     btn.addEventListener('click', () => {
-      // Move clicked button to the top
+      const target = btn.dataset.link;
+      if (target) {
+        window.location.href = target;
+      }
+
       const clicked = buttons.splice(index, 1)[0];
       buttons.unshift(clicked);
 
-      // Re-append buttons to menu in new order
       buttons.forEach(b => menu.appendChild(b));
 
-      // Remove old classes and re-apply transforms
       buttons.forEach((b, i) => {
         b.classList.remove('active');
         b.style.transform = `translateY(${(-100 + i * 50)}px) rotate(${(-20 + i * 10)}deg)`;
