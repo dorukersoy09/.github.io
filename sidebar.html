@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hover Sidebar</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0a0a0a;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .sidebar-wrapper {
+      position: fixed;
+      left: -150px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 150px;
+      height: auto;
+      transition: left 0.4s ease;
+      z-index: 1000;
+    }
+
+    .sidebar-wrapper.show {
+      left: 0;
+    }
+
+    .hover-zone {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 20px;
+      z-index: 999;
+    }
+
+    .menu {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-left: 20px;
+    }
+
+    .menu button {
+      width: 100px;
+      padding: 12px 0;
+      border: none;
+      border-radius: 10px;
+      background: cyan;
+      color: black;
+      font-weight: bold;
+      box-shadow: 0 0 15px cyan;
+      cursor: pointer;
+      transition: transform 0.6s ease, z-index 0.3s;
+      position: absolute;
+      left: 0;
+    }
+
+    .menu button:nth-child(1) { transform: translateY(-100px) rotate(-20deg); }
+    .menu button:nth-child(2) { transform: translateY(-50px) rotate(-10deg); }
+    .menu button:nth-child(3) { transform: translateY(0px) rotate(0deg); }
+    .menu button:nth-child(4) { transform: translateY(50px) rotate(10deg); }
+
+    .menu button.active {
+      z-index: 2;
+      transform: translateY(-150px) scale(1.1);
+      background: #00fff7;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hover-sensitive area -->
+<div class="hover-zone" id="hoverZone"></div>
+
+<!-- Sidebar -->
+<div class="sidebar-wrapper" id="sidebar">
+  <div class="menu" id="menu">
+    <button data-link="index.html">Home</button>
+    <button data-link="projects.html">Projects</button>
+    <button data-link="page.html">About</button>
+    <button data-link="page.html">Contact</button>
+  </div>
+</div>
+
+<script>
+  const menu = document.getElementById('menu');
+  let buttons = Array.from(menu.children);
+  const sidebar = document.getElementById('sidebar');
+  const hoverZone = document.getElementById('hoverZone');
+
+  // Sidebar toggle on hover
+  hoverZone.addEventListener('mouseenter', () => {
+    sidebar.classList.add('show');
+  });
+
+  sidebar.addEventListener('mouseleave', () => {
+    sidebar.classList.remove('show');
+  });
+
+  // Button click rotation logic + navigation
+  buttons.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+      window.location.href = btn.dataset.link;
+
+      const clicked = buttons.splice(index, 1)[0];
+      buttons.unshift(clicked);
+      buttons.forEach(b => menu.appendChild(b));
+
+      buttons.forEach((b, i) => {
+        b.classList.remove('active');
+        b.style.transform = `translateY(${(-100 + i * 50)}px) rotate(${(-20 + i * 10)}deg)`;
+        b.style.zIndex = buttons.length - i;
+      });
+
+      buttons[0].classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
