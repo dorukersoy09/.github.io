@@ -3,92 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Half Circle Sidebar</title>
+  <title>Leaf Menu</title>
   <style>
     body {
       margin: 0;
       height: 100vh;
       background: #0a0a0a;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       overflow: hidden;
       font-family: Arial, sans-serif;
     }
 
-    .sidebar-container {
+    .mask-container {
       position: fixed;
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      width: 300px;
+      width: 200px;
       height: 300px;
-      border-radius: 0 100% 100% 0;
+      clip-path: path("M0,0 Q100,150 0,300 Q-100,150 0,0");
       background: rgba(0, 255, 231, 0.1);
-      border-right: 3px solid #00ffe7;
-      clip-path: circle(50% at 100% 50%);
-      overflow: hidden;
+      border-left: 3px solid #00ffe7;
+      z-index: 2;
     }
 
-    .rotating-menu {
+    .menu-rotator {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      transform-origin: center left;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) rotate(0deg);
+      transform-origin: center center;
       transition: transform 0.8s ease-in-out;
+      z-index: 1;
     }
 
     .menu-button {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform-origin: -120px center;
+      display: block;
+      margin: 20px 0;
+      padding: 10px 20px;
       background: #00ffe7;
-      border: none;
       color: #121212;
+      border: none;
+      border-radius: 5px;
       font-weight: bold;
-      padding: 12px 20px;
-      border-radius: 6px;
       cursor: pointer;
-      box-shadow: 0 0 8px #00ffe7;
-      transition: background 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 10px #00ffe7;
+      transition: background 0.3s ease;
     }
 
     .menu-button:hover {
       background: #00ccb2;
       box-shadow: 0 0 15px #00ccb2;
     }
-
-    /* Position buttons radially */
-    .btn1 { transform: rotate(0deg) translateX(-120px) rotate(0deg); }
-    .btn2 { transform: rotate(45deg) translateX(-120px) rotate(-45deg); }
-    .btn3 { transform: rotate(90deg) translateX(-120px) rotate(-90deg); }
-    .btn4 { transform: rotate(135deg) translateX(-120px) rotate(-135deg); }
   </style>
 </head>
 <body>
 
-<div class="sidebar-container">
-  <div class="rotating-menu" id="menu">
-    <button class="menu-button btn1" onclick="rotateTo(0, 'index.html')">Home</button>
-    <button class="menu-button btn2" onclick="rotateTo(45, 'projects.html')">Projects</button>
-    <button class="menu-button btn3" onclick="rotateTo(90, 'index.html')">About</button>
-    <button class="menu-button btn4" onclick="rotateTo(135, 'page.html')">Contact</button>
-  </div>
+<div class="mask-container"></div>
+
+<div class="menu-rotator" id="rotator">
+  <button class="menu-button" onclick="rotateTo(0, 'index.html')">Home</button>
+  <button class="menu-button" onclick="rotateTo(-90, 'projects.html')">Projects</button>
+  <button class="menu-button" onclick="rotateTo(-180, 'index.html')">About</button>
+  <button class="menu-button" onclick="rotateTo(-270, 'page.html')">Contact</button>
 </div>
 
 <script>
-  let currentAngle = 0;
-
-  function rotateTo(angle, url) {
-    const rotation = -angle;
-    currentAngle = rotation;
-    document.getElementById("menu").style.transform = `rotate(${rotation}deg)`;
-    
-    // Delay page navigation so user sees the spin
+  function rotateTo(deg, url) {
+    document.getElementById('rotator').style.transform = `translateY(-50%) rotate(${deg}deg)`;
     setTimeout(() => {
       window.location.href = url;
-    }, 800); // match CSS transition
+    }, 800);
   }
 </script>
 
