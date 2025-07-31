@@ -22,10 +22,31 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
+    .hover-zone {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 100vh;
+      z-index: 50;
+    }
+
+    .sidebar-wrapper {
+      position: fixed;
+      top: 50%;
+      left: -140px; /* Hidden by default */
+      transform: translateY(-50%);
+      transition: left 0.3s ease;
+      z-index: 100;
+    }
+
+    .sidebar-wrapper.visible {
+      left: 10px; /* Slide in */
+    }
+
     .sidebar {
       width: 150px;
-      min-height: 100vh;
-      position: relative;
+      height: auto;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -68,13 +89,18 @@
 </head>
 <body>
 
-<!-- Sidebar -->
-<div class="sidebar">
-  <div class="menu" id="menu">
-    <button data-link="ironui.html">Home</button>
-    <button data-link="projects.html">Projects</button>
-    <button data-link="page.html">About</button>
-    <button data-link="page.html">Contact</button>
+<!-- Hover trigger zone -->
+<div class="hover-zone" id="hoverZone"></div>
+
+<!-- Sidebar wrapper that will slide -->
+<div class="sidebar-wrapper" id="sidebar">
+  <div class="sidebar">
+    <div class="menu" id="menu">
+      <button data-link="ironui.html">Home</button>
+      <button data-link="projects.html">Projects</button>
+      <button data-link="page.html">About</button>
+      <button data-link="page.html">Contact</button>
+    </div>
   </div>
 </div>
 
@@ -120,10 +146,24 @@
   </div>
 </div>
 
+<!-- Sidebar logic -->
 <script>
+  const hoverZone = document.getElementById("hoverZone");
+  const sidebar = document.getElementById("sidebar");
   const menu = document.getElementById('menu');
   let buttons = Array.from(menu.children);
 
+  // Show sidebar on hover
+  hoverZone.addEventListener("mouseenter", () => {
+    sidebar.classList.add("visible");
+  });
+
+  // Hide sidebar when mouse leaves
+  sidebar.addEventListener("mouseleave", () => {
+    sidebar.classList.remove("visible");
+  });
+
+  // Button behavior
   buttons.forEach((btn, index) => {
     btn.addEventListener('click', () => {
       const target = btn.dataset.link;
