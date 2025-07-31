@@ -66,3 +66,95 @@
   </div>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rotating Neon Sidebar</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0a0a0a;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .menu {
+      position: absolute;
+      left: 50px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 300px;
+      width: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .menu button {
+      width: 100px;
+      padding: 12px 0;
+      border: none;
+      border-radius: 10px;
+      background: cyan;
+      color: black;
+      font-weight: bold;
+      box-shadow: 0 0 15px cyan;
+      cursor: pointer;
+      transition: transform 0.6s ease, z-index 0.3s;
+      position: absolute;
+      left: 0;
+    }
+
+    .menu button:nth-child(1) { transform: translateY(-100px) rotate(-20deg); }
+    .menu button:nth-child(2) { transform: translateY(-50px) rotate(-10deg); }
+    .menu button:nth-child(3) { transform: translateY(0px) rotate(0deg); }
+    .menu button:nth-child(4) { transform: translateY(50px) rotate(10deg); }
+
+    .menu button.active {
+      z-index: 2;
+      transform: translateY(-150px) scale(1.1);
+      background: #00fff7;
+    }
+  </style>
+</head>
+<body>
+
+<div class="menu" id="menu">
+  <button data-link="index.html">Home</button>
+  <button data-link="projects.html">Projects</button>
+  <button data-link="page.html">About</button>
+  <button data-link="page.html">Contact</button>
+</div>
+
+
+<script>
+  const menu = document.getElementById('menu');
+  let buttons = Array.from(menu.children);
+
+  buttons.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+      // Move clicked button to the top
+      const clicked = buttons.splice(index, 1)[0];
+      buttons.unshift(clicked);
+
+      // Re-append buttons to menu in new order
+      buttons.forEach(b => menu.appendChild(b));
+
+      // Remove old classes and re-apply transforms
+      buttons.forEach((b, i) => {
+        b.classList.remove('active');
+        b.style.transform = `translateY(${(-100 + i * 50)}px) rotate(${(-20 + i * 10)}deg)`;
+        b.style.zIndex = buttons.length - i;
+      });
+
+      buttons[0].classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
