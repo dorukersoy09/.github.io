@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iron UI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0a0a0a;
+      color: #00f7ff;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: rgba(0, 255, 255, 0.05);
+      border-right: 1px solid #00f7ff55;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-shadow: inset -2px 0 10px rgba(0, 255, 255, 0.2);
+    }
+
+    .sidebar h2 {
+      color: #00f7ff;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .nav-link {
+      color: #00f7ff;
+      padding: 10px 15px;
+      margin: 10px 0;
+      border: 1px solid #00f7ff33;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover {
+      background: rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 10px #00f7ff88;
+    }
+
+    /* Main HUD Panel */
+    .main-screen {
+      flex: 1;
+      padding: 40px;
+      position: relative;
+      background: radial-gradient(ellipse at center, #000000 0%, #0a0a0a 100%);
+    }
+
+    .hud-block {
+      background: rgba(0, 255, 255, 0.05);
+      border: 1px solid #00f7ff33;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px #00f7ff33;
+      backdrop-filter: blur(4px);
+    }
+
+    .hud-title {
+      font-size: 1.2rem;
+      border-bottom: 1px solid #00f7ff33;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+    }
+
+    .glow {
+      text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2 class="glow">SYSTEM</h2>
+    <a href="#" class="nav-link">Diagnostics</a>
+    <a href="#" class="nav-link">Targeting</a>
+    <a href="#" class="nav-link">Power Core</a>
+    <a href="#" class="nav-link">Comm</a>
+    <a href="#" class="nav-link">HUD Config</a>
+  </div>
+
+  <div class="main-screen">
+    <div class="hud-block">
+      <div class="hud-title glow">SYSTEM STATUS</div>
+      <p>Power: 98%</p>
+      <p>Core Temp: 32°C</p>
+      <p>Shields: Online</p>
+    </div>
+
+    <div class="hud-block">
+      <div class="hud-title glow">TARGET LOCK</div>
+      <p>No hostile targets detected.</p>
+    </div>
+
+    <div class="hud-block">
+      <div class="hud-title glow">ENVIRONMENTAL READINGS</div>
+      <p>Outside Temp: 27°C</p>
+      <p>Radiation Levels: Safe</p>
+    </div>
+  </div>
+
+</body>
+</html>
